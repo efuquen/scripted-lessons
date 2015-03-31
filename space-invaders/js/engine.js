@@ -156,9 +156,9 @@ function doMoves(moves) {
       setTimeout(doMoves, move.wait * 1000, moves);
     } else if (move.color) {
       if (move.color === 'blue') {
-        currentSquare().color = '#0f0';
-      } else if (move.color === 'green') {
         currentSquare().color = '#00f';
+      } else if (move.color === 'green') {
+        currentSquare().color = '#0f0';
       } else if (move.color === 'red') {
         currentSquare().color = '#f00';
       } else if (move.color === 'black') {
