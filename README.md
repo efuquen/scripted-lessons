@@ -1,2 +1,1 @@
-# jslessons
 # scripted-lessons
