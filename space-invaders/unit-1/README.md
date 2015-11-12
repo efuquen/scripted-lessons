@@ -7,7 +7,7 @@ This lesson will introduce you to one of the most fundamental concepts of progra
 ## You Do
 
 1. Introduce the fundamdental concepts, algorithms and types.
-2. Bring up the starter [jsbin](http://jsbin.com/rafoka) and demonstrate some space invader game functionality.
+2. Bring up the starter [jsbin](http://jsbin.com/rafoka/edit?html,js,output) and demonstrate some space invader game functionality.
 3. Show the students the API, linked below.
 
 ## We Do
