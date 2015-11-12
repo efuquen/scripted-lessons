@@ -237,6 +237,9 @@ function draw() {
 }
 
 function start(containerId, greetingText) {
+  if (!containerId) {
+    containerId = 'board';
+  }
   container = document.getElementById(containerId);
   canvas = document.createElement('canvas');
   canvas.width = 800;
