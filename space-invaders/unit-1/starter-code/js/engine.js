@@ -236,17 +236,11 @@ function draw() {
   moves = [];
 }
 
-function start(containerId, greetingText, width, height) {
+function start(containerId, greetingText) {
   container = document.getElementById(containerId);
   canvas = document.createElement('canvas');
   canvas.width = 800;
-  if (width) {
-    canvas.width = width;
-  }
   canvas.height = 600;
-  if (height) {
-    canvas.height = height;
-  }
   ctx = canvas.getContext('2d');
   initBoard();
   img = new Image();
