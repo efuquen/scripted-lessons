@@ -1,8 +1,8 @@
-![Space Invader Board](space-invader-board.png)
-
 # Space Invaders - Unit 1
 
 This lesson will introduce you to one of the most fundamental concepts of programming, the algorithm, and a the notion of type.  Detailed talking points can be found [here](DETAILS.md).
+
+![Space Invader Board](space-invader-board.png)
 
 ## You Do
 
