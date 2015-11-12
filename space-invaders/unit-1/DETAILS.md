@@ -43,7 +43,7 @@ x, y, and z correspond the numbers 1, 2, and 3 above.  We have not made a *gener
 
 ```
   function goAndTurn(num, direction, street) {
-    console.log('Go down ${num} blocks, turn ${direction} on ${street}');
+    console.log(`Go down ${num} blocks, turn ${direction} on ${street}`);
   }
 
   goAndTurn(0,  'right', '53rd St.');
