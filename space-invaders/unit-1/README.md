@@ -28,3 +28,6 @@ The second type is called a `string`.  A string is a list of characters that you
   * `"abde   fghitj klfh"`
   * `"123abc"`
   * `"45678"`
+
+## API
+View the API docs [here](API.md).
