@@ -5,12 +5,12 @@ Below is documentation of all the basic functions for the Space Invader board ga
 ## start(greeting, id)
 Draws the game board.  By default it's made up of 8 x 8 squares, in which the character you control can only occupy one square.  The character will start in upper left hand corner of the board and pointing downwards.
 
-#### Parameters
+##### Parameters
 
  * `greeting` - string, optional.  The greeting to display on top of the board. Defaults to 'Have fun playing!'.
  * `id` - string, optional.  The id of the html element to place the board in.  Defaults to 'board'.
 
-#### Example
+##### Example
 `start('Good luck!')  # Creates board with a custom greeting and under the default id`
 
 ## draw()
