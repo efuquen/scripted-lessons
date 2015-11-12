@@ -10,7 +10,7 @@ var sprite = {
   speed: 1,
   color: '#c00',
   rotate: 0,
-  src: 'http://dv00f9dtk4nbg.cloudfront.net/mihs/2014/public/img/space-invader.png'
+  src: 'https://cdn.rawgit.com/efuquen/scripted-lessons/33aadf8176cee529bd8a49781fe717467ad4a2bc/space-invaders/img/space_invader.png'
 };
 var board = {
   color: '#000',
@@ -128,7 +128,7 @@ function win() {
     ctx.drawImage(wonImg, 0, 0, 800, 600);
   }
 
-  wonImg.src = 'http://dv00f9dtk4nbg.cloudfront.net/mihs/2014/public/img/boss.jpg'
+  wonImg.src = 'https://cdn.rawgit.com/efuquen/scripted-lessons/33aadf8176cee529bd8a49781fe717467ad4a2bc/space-invaders/img/boss.jpg'
 }
 
 function doMoves(moves) {
