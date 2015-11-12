@@ -1,26 +1,55 @@
-## Application Programming Interface (API)
+# Application Programming Interface (API)
 
-### start()
-Draws the game board.  By default it's made up of 8 x 8 squares, in which the character you control can only occupy one square.  The character will start in upper left hand corner of the board and pointing in the southern direction.
+Below is documentation of all the basic functions for the Space Invader board game.
 
-### draw()
+## start(greeting, id)
+Draws the game board.  By default it's made up of 8 x 8 squares, in which the character you control can only occupy one square.  The character will start in upper left hand corner of the board and pointing downwards.
+
+### Parameters
+
+ * `greeting` - string, optional.  The greeting to display on top of the board. Defaults to 'Have fun playing!'.
+ * `id` - string, optional.  The id of the html element to place the board in.  Defaults to 'board'.
+
+### Example
+`start('Good luck!')  # Creates board with a custom greeting and under the default id`
+
+## draw()
 Will redraw your board, processing any pervious instructions submitted to move your character.
 
-### wait(num)
-Wait num seconds before your character processes any other movement commands.  This will actually allow you to see your character move, otherwise all commadns will be processed immediately.
+## wait(num)
+Wait before your character processes any other movement commands.  This will actually allow you to see your character move, otherwise all commands will be processed immediately.
 
-### turnLeft()
-Your character will turn to his left.
+### Parameters
+* `num` - number, required.  The number of seconds to wait before executing the next commands.
 
-### turnRight()
-Your character will turn to the right.
+### Example
+`wait(5)  # waits 5 seconds`
 
-### turnAround()
-Your character will turn around.
+## turnLeft()
+Your character will turn to his left, 90 degrees.
 
-### move(num)
-Will move your character, in the direction it is currently face, `num` spaces.
+## turnRight()
+Your character will turn to the right, 90 degrees.
 
-### color(c)
-Colors the current square with the string `c`.  i.e `color("blue")` will color the current square blue.
+## turnAround()
+Your character will turn around, 180 degrees.
+
+## move(num)
+Will move your character, in the direction it is currently face.
+
+### Parameters
+
+* `num` - number, required. The number of spaces to move the character.
+
+### Example
+`move(3)  # moves the character 3 spaces.`
+
+## color()
+Colors the current square.  
+
+### Parameters
+* `c` - string, required. Represents the color to use for the current square.
+
+### Example
+* `color("blue")  # colors current square blue.`
 
