@@ -1,7 +1,10 @@
+var container = null;
 var canvas = null;
+var greeting = null;
 var ctx = null;
 var moves = [];
 var moreMoves = [];
+var delay = 2;
 var sprite = {
   x: 0,
   y: 0,
@@ -233,10 +236,17 @@ function draw() {
   moves = [];
 }
 
-function start(greeting) {
-  canvas = document.getElementById('canvas');
+function start(containerId, greetingText, width, height) {
+  container = document.getElementById(containerId);
+  canvas = document.createElement('canvas');
   canvas.width = 800;
+  if (width) {
+    canvas.width = width;
+  }
   canvas.height = 600;
+  if (height) {
+    canvas.height = height;
+  }
   ctx = canvas.getContext('2d');
   initBoard();
   img = new Image();
@@ -244,18 +254,20 @@ function start(greeting) {
     render();
     console.log('start');
   }
-
   img.src = sprite.src;
-  if (greeting) {
-    setGreeting(greeting);
+
+  greeting = document.createElement('h3');
+  if (greetingText) {
+    setGreeting(greetingText);
   } else {
     setGreeting('Have fun playing!');
   }
+  container.appendChild(greeting);
+  container.appendChild(canvas);
 
   wait(2);
 }
 
-function setGreeting(greeting) {
-  var h3Element = document.getElementById('greeting');
-  h3Element.innerHTML = greeting;
+function setGreeting(greetingText) {
+  greeting.innerHTML = greetingText;
 }
