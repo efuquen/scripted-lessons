@@ -1,3 +1,6 @@
+![Space Invader Board](/space-invader-board.png)
+Format: ![Image of starting space invader board](url)
+
 # Space Invaders - Unit 1
 
 This lesson will introduce you to one of the most fundamental concepts of programming, the algorithm. 
