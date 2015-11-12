@@ -236,7 +236,7 @@ function draw() {
   moves = [];
 }
 
-function start(containerId, greetingText) {
+function start(greetingText, containerId) {
   if (!containerId) {
     containerId = 'board';
   }
