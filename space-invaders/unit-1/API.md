@@ -19,10 +19,10 @@ Will redraw your board, processing any pervious instructions submitted to move y
 ## wait(num)
 Wait before your character processes any other movement commands.  This will actually allow you to see your character move, otherwise all commands will be processed immediately.
 
-### Parameters
+##### Parameters
 * `num` - number, required.  The number of seconds to wait before executing the next commands.
 
-### Example
+##### Example
 `wait(5)  # waits 5 seconds`
 
 ## turnLeft()
@@ -37,19 +37,19 @@ Your character will turn around, 180 degrees.
 ## move(num)
 Will move your character, in the direction it is currently face.
 
-### Parameters
+##### Parameters
 
 * `num` - number, required. The number of spaces to move the character.
 
-### Example
+##### Example
 `move(3)  # moves the character 3 spaces.`
 
 ## color()
 Colors the current square.  
 
-### Parameters
+##### Parameters
 * `c` - string, required. Represents the color to use for the current square.
 
-### Example
+##### Example
 * `color("blue")  # colors current square blue.`
 
