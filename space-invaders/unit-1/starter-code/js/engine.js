@@ -296,6 +296,7 @@
   
   var ScriptedBoardGame = {
     start: start,
+    color: color,
     move: move,
     moveAnimated: moveAnimated,
     wait: wait,
