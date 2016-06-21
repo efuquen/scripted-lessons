@@ -1,0 +1,1 @@
+ScriptedMusic.apply(window);
