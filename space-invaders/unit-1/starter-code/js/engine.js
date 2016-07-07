@@ -1,33 +1,36 @@
+/*global Image*/
+
 (function() {
   var root = this;
   
   var container = null;
   var canvas = null;
-  var greeting = null;
+  var greetingElement = null;
   var ctx = null;
   var moves = [];
   var moreMoves = [];
-  var delay = 2;
+  var defaultSpriteImageSrc = 'https://golang.org/doc/gopher/gophercolor.png';
+  
   var board = {
-    color: '#000',
+    color: '#fff',
     sizeX: 10,
     sizeY: 8,
     values: [],
     blockSize: 100,
-    lineWidth: 2
+    lineWidth: 2,
+    lineColor: '#000',
   };
+  
   var sprite = {
     x: 0,
     y: 0,
+    padding: 10,
     width: board.blockSize,
     height: board.blockSize,
     color: '#c00',
     rotate: 0,
-  
-    src: 'https://cdn.rawgit.com/efuquen/scripted-lessons/33aadf8176cee529bd8a49781fe717467ad4a2bc/space-invaders/img/space_invader.png'
   };
   
-  var img;
   var stage = 0;
   var TO_RADIANS = Math.PI / 180;
   var running = false;
@@ -58,25 +61,34 @@
       x++;
     }
     
-    var vLineIndices = [];
+    var vLineIndices = [0];
     for (var i = 0; i < board.sizeX; i++) {
       vLineIndices.push(board.blockSize * (1 + i));
     }
-    var hLineIndices = [];
+    var hLineIndices = [0];
     for (var i = 0; i < board.sizeY; i++) {
       hLineIndices.push(board.blockSize * (1 + i));
     }
     
-    verticalLines(vLineIndices, board.lineWidth, board.sizeY * board.blockSize);
-    horizontalLines(hLineIndices, board.lineWidth, board.sizeX * board.blockSize);
+    verticalLines(
+      vLineIndices, board.lineWidth, board.lineColor,
+      board.sizeY * board.blockSize);
+    horizontalLines(
+      hLineIndices, board.lineWidth, board.lineColor,
+      board.sizeX * board.blockSize);
   }
   
   function drawSprite() {
     ctx.save();
     ctx.translate(
-      sprite.x + img.width / 2, sprite.y + img.height / 2);
+      sprite.x + sprite.width / 2, sprite.y + sprite.height / 2);
     ctx.rotate(sprite.rotate * TO_RADIANS);
-    ctx.drawImage(img, -(img.width / 2), -(img.height / 2));
+    ctx.drawImage(
+      sprite.img, 
+      -((sprite.width - sprite.padding) / 2),
+      -((sprite.height - sprite.padding)/ 2),
+      sprite.width - sprite.padding,
+      sprite.height - sprite.padding);
     ctx.restore();
   }
   
@@ -94,10 +106,10 @@
     drawSprite();
   }
   
-  function verticalLines(xs, lineWidth, height) {
+  function verticalLines(xs, lineWidth, lineColor, height) {
     for (var i = 0; i < xs.length; i++) {
       ctx.beginPath();
-      ctx.strokeStyle = '#ffffff';
+      ctx.strokeStyle = lineColor;
       ctx.lineWidth = lineWidth;
       ctx.moveTo(xs[i], 0);
       ctx.lineTo(xs[i], height);
@@ -105,10 +117,10 @@
     }
   }
   
-  function horizontalLines(ys, lineWidth, width) {
+  function horizontalLines(ys, lineWidth, lineColor, width) {
     for (var i = 0; i < ys.length; i++) {
       ctx.beginPath();
-      ctx.strokeStyle = '#ffffff';
+      ctx.strokeStyle = lineColor;
       ctx.lineWidth = lineWidth;
       ctx.moveTo(0, ys[i]);
       ctx.lineTo(width, ys[i]);
@@ -135,7 +147,6 @@
         if (sprite.rotate >= 360) {
           sprite.rotate = sprite.rotate - 360;
         }
-  
         console.log('rotate ' + move.rotate + ' degrees');
       }
     }
@@ -145,9 +156,9 @@
     var wonImg = new Image();
     wonImg.onload = function() {
       ctx.drawImage(wonImg, 0, 0, 800, 600);
-    }
+    };
   
-    wonImg.src = 'https://cdn.rawgit.com/efuquen/scripted-lessons/33aadf8176cee529bd8a49781fe717467ad4a2bc/space-invaders/img/boss.jpg'
+    wonImg.src = 'https://cdn.rawgit.com/efuquen/scripted-lessons/33aadf8176cee529bd8a49781fe717467ad4a2bc/space-invaders/img/boss.jpg';
   }
   
   function doMoves(moves) {
@@ -261,9 +272,10 @@
     moves = [];
   }
   
-  function start(greetingText, containerId) {
-    if (!containerId) {
-      containerId = 'board';
+  function start(opts) {
+    var containerId = 'board';
+    if (opts && opts.containerId) {
+      containerId = opts.containerId;
     }
     container = document.getElementById(containerId);
     canvas = document.createElement('canvas');
@@ -271,27 +283,32 @@
     canvas.height = board.blockSize * board.sizeY;
     ctx = canvas.getContext('2d');
     initBoard();
-    img = new Image();
-    img.onload = function() {
+    sprite.img = new Image(sprite.width, sprite.height);
+    sprite.img.onload = function() {
       render();
       console.log('start');
+    };
+    
+    if (opts && opts.sprite && opts.sprite.imgSrc) {
+      sprite.img.src = opts.sprite.imgSrc;
+    } else {
+      sprite.img.src = defaultSpriteImageSrc;
     }
-    img.src = sprite.src;
-  
-    greeting = document.createElement('h3');
-    if (greetingText) {
-      setGreeting(greetingText);
+
+    greetingElement = document.createElement('h3');
+    if (opts && opts.greetingText) {
+      setGreeting(opts.greetingText);
     } else {
       setGreeting('Have fun playing!');
     }
-    container.appendChild(greeting);
+    container.appendChild(greetingElement);
     container.appendChild(canvas);
   
     wait(2);
   }
   
   function setGreeting(greetingText) {
-    greeting.innerHTML = greetingText;
+    greetingElement.innerHTML = greetingText;
   }
   
   var ScriptedBoardGame = {
@@ -308,7 +325,7 @@
   };
   
   function apply(other) {
-    for (key in ScriptedBoardGame) {
+    for (var key in ScriptedBoardGame) {
       other[key] = ScriptedBoardGame[key];
     }
   }
