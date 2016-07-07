@@ -9,7 +9,7 @@
   var ctx = null;
   var moves = [];
   var moreMoves = [];
-  var defaultSpriteImageSrc = 'https://golang.org/doc/gopher/gophercolor.png';
+  var defaultSpriteImageSrc = 'https://cdn.rawgit.com/efuquen/scripted-lessons/3cb88aa38b302a4d924220858133a39f649101ea/space-invaders/unit-1/starter-code/img/gophercolor.png';
   
   var board = {
     color: '#fff',
